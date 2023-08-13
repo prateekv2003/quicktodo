@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import Dropdown from "./components/Dropdown"
 import axios from 'axios'
 import { Api } from './utils/api.config'
 import { useMainContext } from './contexts/MainContext'
 import Tickets from './components/Tickets'
 import { FilteredData, TicketType, UserType } from './types/MainTypes'
-import { BiSad } from 'react-icons/bi'
 import { StatusType } from './types/MainTypes'
 import UserImg from './assets/user.webp'
 function App() {
 
-  const { users, setUsers, tickets, setTickets, grouping, ordering, selectedGroup, setSelectedGroup, selectedOrder, setSelectedOrder, status, priority }: any = useMainContext();
+  const { users, setUsers, tickets, setTickets, selectedGroup, status, priority }: any = useMainContext();
 
   // const status = [{
   //   name: "Todo",
