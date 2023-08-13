@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import Card from './Card'
-import { BiSearch } from 'react-icons/bi'
+import { BiPlus, BiSearch } from 'react-icons/bi'
 import { FilteredData, TicketType } from '../types/MainTypes'
 import { useMainContext } from '../contexts/MainContext'
+import { BiDotsHorizontalRounded } from 'react-icons/bi'
 type Props = {
     data: FilteredData;
 }
+
+// const temp = {
+//     icon: <BiSearch className='text-xl' />
+// }
 
 const Tickets = ({ data }: Props) => {
 
@@ -24,21 +29,20 @@ const Tickets = ({ data }: Props) => {
             }
             )
         )
-        console.log("TATA", selectedOrder.name)
-        console.log("TATA2", sortedTickets)
     }, [selectedOrder, data?.tickets]) // selectedOrder.name can have 2 values: Title or Priority
 
+    console.log(data)
     return (
         <div className='flex flex-col space-y-4'>
             <div className='flex items-center justify-between'>
                 <div className='flex items-center space-x-2 py-2'>
-                    {data?.icon && <BiSearch className='text-xl' />}
+                    {data?.icon ? data?.icon : <BiSearch className='text-xl' />}
                     <p className='text-sm'>{data?.title}</p>
                     <p className='text-sm font-light'>{data?.tickets?.length}</p>
                 </div>
                 <div className='flex items-center space-x-2 py-2'>
-                    <BiSearch className='text-xl' />
-                    <BiSearch className='text-xl' />
+                    <BiPlus className='text-xl text-gray-600' />
+                    <BiDotsHorizontalRounded className='text-xl text-gray-600' />
                 </div>
             </div>
 
