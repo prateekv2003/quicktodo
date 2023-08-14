@@ -1,9 +1,11 @@
 import { createContext, useContext, useState } from "react";
 import { TicketType, UserType } from "../types/MainTypes";
-import { BsCircle } from "react-icons/bs";
+import { BsCircle, BsExclamationSquareFill } from "react-icons/bs";
 import { PiCircleHalfFill } from "react-icons/pi";
 import { BiSolidCheckCircle, BiSolidXCircle } from "react-icons/bi";
-import { FaStopCircle } from "react-icons/fa";
+import { TbCircleDotted } from "react-icons/tb";
+import { AiOutlineDash } from "react-icons/ai";
+import { MdSignalCellularAlt, MdSignalCellularAlt1Bar, MdSignalCellularAlt2Bar } from "react-icons/md";
 
 export const MainContext = createContext({});
 
@@ -26,7 +28,7 @@ export const MainProvider = ({ children }: { children: React.ReactNode }) => {
     const status = [
         {
             name: "Backlog",
-            icon: <FaStopCircle className='text-xl text-blue-400' />
+            icon: <TbCircleDotted className='text-xl text-gray-400' />
         },
         {
             name: "Todo",
@@ -45,7 +47,44 @@ export const MainProvider = ({ children }: { children: React.ReactNode }) => {
             icon: <BiSolidXCircle className='text-xl text-gray-400' />
         }
     ];
-    const priority = ["No Priority", "Low", "Medium", "High", "Urgent"];
+    const priority = [
+        {
+            rank: 0,
+            name: "No Priority",
+            icon: <AiOutlineDash className='text-xl text-gray-400' />
+        },
+        {
+            rank: 1,
+            name: "Low",
+            icon: (
+                <div className='relative flex justify-center items-center w-4 h-4 text-gray-700'> 
+                    <MdSignalCellularAlt className='text-sm text-gray-300 absolute top-0 left-0' />
+                    <MdSignalCellularAlt1Bar className='text-sm text-gray-700 absolute top-0 left-0' />
+                </div>
+            )
+        },
+        {
+            rank: 2,
+            name: "Medium",
+            icon: (
+                // make them overlap
+                <div className='relative flex justify-center items-center w-4 h-4 text-gray-700'> 
+                    <MdSignalCellularAlt className='text-sm text-gray-300 absolute top-0 left-0' />
+                    <MdSignalCellularAlt2Bar className='text-sm text-gray-700 absolute top-0 left-0' />
+                </div>
+            )
+        },
+        {
+            rank: 3,
+            name: "High",
+            icon: <MdSignalCellularAlt className='text-sm text-grey-700' />
+        },
+        {
+            rank: 4,
+            name: "Urgent",
+            icon: <BsExclamationSquareFill className='text-sm text-orange-500' />
+        },
+    ]
 
     return (
         <MainContext.Provider value={{

@@ -5,7 +5,7 @@ import { Api } from './utils/api.config'
 import { useMainContext } from './contexts/MainContext'
 import Tickets from './components/Tickets'
 import { FilteredData, TicketType, UserType } from './types/MainTypes'
-import { StatusType } from './types/MainTypes'
+import { StatusType, PriorityType } from './types/MainTypes'
 import UserImg from './assets/user.webp'
 function App() {
 
@@ -32,7 +32,28 @@ function App() {
   //   icon: <BiSad className='text-xl text-gray-400' />
   // }
   // ];
-  //   const priority = [ "No Priority", "Urgent", "High", "Medium", "Low"];
+  // const priority = [
+  //   {
+  //     name: "No Priority",
+  //     icon: <BsCircle className='text-sm text-gray-400' />
+  //   },
+  //   {
+  //     name: "Low",
+  //     icon: <BsCircle className='text-sm text-blue-400' />
+  //   },
+  //   {
+  //     name: "Medium",
+  //     icon: <BsCircle className='text-sm text-yellow-400' />
+  //   },
+  //   {
+  //     name: "High",
+  //     icon: <BsCircle className='text-sm text-violet-600' />
+  //   },
+  //   {
+  //     name: "Urgent",
+  //     icon: <BsCircle className='text-sm text-red-600' />
+  //   }
+  // ]
 
   const [filteredData, setFilteredData] = useState<FilteredData[]>([]);
 
@@ -53,6 +74,7 @@ function App() {
   }, [])
 
   useEffect(() => {
+    const priorityOrder = [0, 4, 3, 2, 1];
     switch (selectedGroup.name) {
       case 'Status':
         setFilteredData(status.map((stat: StatusType) => {
@@ -70,7 +92,7 @@ function App() {
             icon: (
               <div className="relative">
                 <img className="w-6 h-6 rounded-full shadow-md" src={UserImg} alt="" />
-                <span className="bottom-0 left-3 absolute  w-2.5 h-2.5 bg-green-400 border-2 border-white rounded-full"></span>
+                <span className={`bottom-0 left-4 absolute  w-2.5 h-2.5 ${user?.available?"bg-green-400":"bg-gray-400"} border-2 border-white rounded-full`}></span>
               </div>
             ),
             tickets: tickets.filter((ticket: TicketType) => ticket.userId === user.id)
@@ -78,10 +100,11 @@ function App() {
         }))
         break;
       case 'Priority':
-        setFilteredData(priority.map((prior: string, pIndex: number) => {
+        setFilteredData(priorityOrder.map((rank: number) => {
           return {
-            title: prior,
-            tickets: tickets.filter((ticket: TicketType) => ticket.priority === pIndex)
+            title: priority[rank].name,
+            icon: priority[rank].icon,
+            tickets: tickets.filter((ticket: TicketType) => ticket.priority === rank)
           }
         }))
         break;

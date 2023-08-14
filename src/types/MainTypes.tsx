@@ -25,3 +25,9 @@ export interface StatusType {
     name: string;
     icon: JSX.Element;
 }
+
+export interface PriorityType {
+    rank: number;
+    name: string;
+    icon: JSX.Element;
+}
