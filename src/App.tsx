@@ -6,7 +6,7 @@ import { useMainContext } from './contexts/MainContext'
 import Tickets from './components/Tickets'
 import { FilteredData, TicketType, UserType } from './types/MainTypes'
 import { StatusType } from './types/MainTypes'
-import UserImg from './assets/user.webp'
+
 function App() {
 
   const { users, setUsers, tickets, setTickets, selectedGroup, status, priority }: any = useMainContext();

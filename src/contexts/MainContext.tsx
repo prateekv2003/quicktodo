@@ -21,8 +21,8 @@ export const MainProvider = ({ children }: { children: React.ReactNode }) => {
         { name: 'Title (A-Z)' },
         { name: 'Title (Z-A)' },
     ]
-    const [selectedGroup, setSelectedGroup] = useState(grouping[0])
-    const [selectedOrder, setSelectedOrder] = useState(ordering[0])
+    const [selectedGroup, setSelectedGroup] = useState(JSON.parse(localStorage.getItem("group")!) || grouping[0])
+    const [selectedOrder, setSelectedOrder] = useState(JSON.parse(localStorage.getItem("order")!) || ordering[0])
     const [users, setUsers] = useState<UserType[]>([]);
     const [tickets, setTickets] = useState<TicketType[]>([]);
 

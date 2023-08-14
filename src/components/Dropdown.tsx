@@ -37,7 +37,10 @@ export default function Example() {
               <Menu.Item>
                 {
                   () => (
-                    <Listbox value={selectedGroup} onChange={setSelectedGroup}>
+                    <Listbox value={selectedGroup} onChange={(val)=>{
+                      localStorage.setItem('group', JSON.stringify(val))
+                      setSelectedGroup(val)
+                    }}>
                       <div className="relative mt-1">
                         <Listbox.Button className="relative w-32 cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
                           <span className="block truncate">{selectedGroup.name}</span>
@@ -85,7 +88,10 @@ export default function Example() {
               <p className='text-sm font-semibold text-gray-400'>Ordering</p>
               <Menu.Item>
                 {() => (
-                  <Listbox value={selectedOrder} onChange={setSelectedOrder}>
+                  <Listbox value={selectedOrder} onChange={(val)=>{
+                    localStorage.setItem('order', JSON.stringify(val))
+                    setSelectedOrder(val)
+                  }}>
                     <div className="relative mt-1">
                       <Listbox.Button className="relative w-32 cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
                         <span className="block truncate">{selectedOrder.name}</span>
