@@ -22,7 +22,6 @@ function App() {
       console.log("Error")
       return;
     }
-    console.log(response.data)
     setUsers(response.data.users)
     setTickets(response.data.tickets)
     setIsLoading(false);
@@ -50,7 +49,7 @@ function App() {
             title: user.name,
             icon: (
               <div className="relative">
-                <img className="w-6 h-6 rounded-full shadow-md" src={UserImg} alt="" />
+                <img className="w-6 h-6 rounded-full shadow-md" src={`https://ui-avatars.com/api/?name=${user?.name || "unknown"}background=random`} alt="" />
                 <span className={`bottom-0 left-4 absolute  w-2.5 h-2.5 ${user?.available ? "bg-green-400" : "bg-gray-400"} border-2 border-white rounded-full`}></span>
               </div>
             ),

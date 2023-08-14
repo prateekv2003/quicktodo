@@ -1,4 +1,3 @@
-import UserImg from '../assets/user.webp'
 import { StatusType, TicketType, UserType } from '../types/MainTypes';
 import { useMainContext } from '../contexts/MainContext'
 import { GoDotFill } from 'react-icons/go'
@@ -23,14 +22,12 @@ const Card = ({ ticket }: Props) => {
   useEffect(() => {
     if(users.length > 0){
       const res = users.find((u: UserType) => u.id === ticket?.userId);
-      console.log(res)
       if(res){
         setUser(res)
       }else{
         setUser(null)
       }
     }
-    console.log(users)
   }, [users])
 
   return (
@@ -40,7 +37,7 @@ const Card = ({ ticket }: Props) => {
         {
           selectedGroup?.name !== "User" && (
             <div className="relative">
-              <img className="w-6 h-6 rounded-full shadow-md" src={UserImg} alt="" />
+              <img className="w-6 h-6 rounded-full shadow-md" src={`https://ui-avatars.com/api/?name=${user?.name || "unknown"}background=random`} alt="" />
               <span className={`bottom-0 left-4 absolute  w-2.5 h-2.5 ${user?.available?"bg-green-400":"bg-gray-400"} border-2 border-white rounded-full`}></span>
             </div>
           )
