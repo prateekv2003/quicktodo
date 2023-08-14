@@ -18,7 +18,8 @@ export const MainProvider = ({ children }: { children: React.ReactNode }) => {
     ]
     const ordering = [
         { name: 'Priority' },
-        { name: 'Title' }
+        { name: 'Title (A-Z)' },
+        { name: 'Title (Z-A)' },
     ]
     const [selectedGroup, setSelectedGroup] = useState(grouping[0])
     const [selectedOrder, setSelectedOrder] = useState(ordering[0])
@@ -106,6 +107,6 @@ export const MainProvider = ({ children }: { children: React.ReactNode }) => {
     );
 };
 
-export function useMainContext() {
+export const useMainContext = () => {
     return useContext(MainContext);
 }

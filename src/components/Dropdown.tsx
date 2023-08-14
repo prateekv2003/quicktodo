@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react'
+import { Fragment } from 'react'
 import { Listbox, Menu, Transition } from '@headlessui/react'
 import { BiChevronDown } from 'react-icons/bi'
 import { GiSettingsKnobs } from 'react-icons/gi'
@@ -36,7 +36,7 @@ export default function Example() {
               <p className='text-sm font-semibold text-gray-400'>Grouping</p>
               <Menu.Item>
                 {
-                  ({ active }) => (
+                  () => (
                     <Listbox value={selectedGroup} onChange={setSelectedGroup}>
                       <div className="relative mt-1">
                         <Listbox.Button className="relative w-32 cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
@@ -84,7 +84,7 @@ export default function Example() {
             <div className='flex w-full items-center justify-between'>
               <p className='text-sm font-semibold text-gray-400'>Ordering</p>
               <Menu.Item>
-                {({ active }) => (
+                {() => (
                   <Listbox value={selectedOrder} onChange={setSelectedOrder}>
                     <div className="relative mt-1">
                       <Listbox.Button className="relative w-32 cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left shadow-md focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">

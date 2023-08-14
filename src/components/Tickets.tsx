@@ -18,19 +18,19 @@ const Tickets = ({ data }: Props) => {
     useEffect(() => {
         setSortedTickets(
             [...(data?.tickets || [])].sort((a, b) => {
-                if (selectedOrder.name === 'Title') {
+                if (selectedOrder.name === 'Title (A-Z)') {
                     return a.title.localeCompare(b.title);
+                } else if (selectedOrder.name === 'Title (Z-A)') {
+                    return b.title.localeCompare(a.title);
                 } else {
                     return b.priority - a.priority
                 }
             }
             )
         )
-    }, [selectedOrder, data?.tickets]) // selectedOrder.name can have 2 values: Title or Priority
-
-    console.log(data)
+    }, [selectedOrder, data?.tickets])
     return (
-        <div className='flex flex-col space-y-4'>
+        <div className='flex flex-col space-y-4 min-h-fit'>
             <div className='flex items-center justify-between'>
                 <div className='flex items-center space-x-2 py-2'>
                     {data?.icon ? data?.icon : <GoDotFill className='text-xl' />}
